@@ -16,8 +16,7 @@ return{
         },
     },
 	init = function()
-		vim.keymap.set('n', '<C-n>', ':Neotree<CR>',{})
-		vim.keymap.set('n', '<leader>pv',':Neotree show toggle<CR>',{})
+		vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>',{})
 	end
 }
 

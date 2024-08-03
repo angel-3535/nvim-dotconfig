@@ -14,7 +14,7 @@ return {
     priority = 99,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "phpactor","tsserver","html"}
+        ensure_installed = { "lua_ls", "phpactor","tsserver","html","gopls"}
       })
     end,
   },
@@ -30,6 +30,7 @@ return {
       lspconfig.phpactor.setup({capabilties = capabilities})
       lspconfig.tsserver.setup({capabilties = capabilities})
       lspconfig.html.setup({capabilties = capabilities})
+      lspconfig.gopls.setup({capabilties = capabilities})
 
       vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
       vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
