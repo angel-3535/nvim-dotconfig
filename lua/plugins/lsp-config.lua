@@ -14,7 +14,7 @@ return {
     priority = 99,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "phpactor","tsserver","html","gopls"}
+        ensure_installed = { "lua_ls","tsserver","html","gopls","intelephense"}
       })
     end,
   },
@@ -27,7 +27,7 @@ return {
       local lspconfig = require('lspconfig')
 
       lspconfig.lua_ls.setup({capabilties = capabilities})
-      lspconfig.phpactor.setup({capabilties = capabilities})
+      lspconfig.intelephense.setup({capabilties = capabilities})
       lspconfig.tsserver.setup({capabilties = capabilities})
       lspconfig.html.setup({capabilties = capabilities})
       lspconfig.gopls.setup({capabilties = capabilities})
@@ -47,7 +47,7 @@ return {
           vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
           vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
           vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+          vim.keymap.set({ 'n', 'x' }, '<leader>gF', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
           vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
           vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         end

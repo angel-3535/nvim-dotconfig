@@ -36,6 +36,16 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = ""
 
+
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
+vim.opt.foldnestmax = 4
+
+
 --============================clipboard=============================
 --vim.opt.clipboard = 'unnamedplus'
 
@@ -47,4 +57,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
    vim.highlight.on_yank()
   end,
 })
+
+
+
+
 
