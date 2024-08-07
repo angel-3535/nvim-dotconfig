@@ -44,7 +44,7 @@ vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 4
-
+vim.opt.foldenable = false
 
 --============================clipboard=============================
 --vim.opt.clipboard = 'unnamedplus'
