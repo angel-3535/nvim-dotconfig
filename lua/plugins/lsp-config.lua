@@ -14,7 +14,7 @@ return {
     priority = 99,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls","tsserver","html","gopls","intelephense"}
+        ensure_installed = { "lua_ls","tsserver","html","gopls","intelephense","taplo","tailwindcss","emmet_language_server","cssls" }
       })
     end,
   },
@@ -31,10 +31,15 @@ return {
       lspconfig.tsserver.setup({capabilties = capabilities})
       lspconfig.html.setup({capabilties = capabilities})
       lspconfig.gopls.setup({capabilties = capabilities})
+      lspconfig.taplo.setup({capabilties = capabilities})
+      lspconfig.tailwindcss.setup({capabilties = capabilities})
+      lspconfig.emmet_language_server.setup({capabilties = capabilities})
+      lspconfig.cssls.setup({capabilties = capabilities})
+
 
       vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-      --vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-      --vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+      vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+      vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
