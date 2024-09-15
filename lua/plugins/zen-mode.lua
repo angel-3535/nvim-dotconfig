@@ -25,6 +25,13 @@ return
   dependencies = {
     "folke/twilight.nvim"
   },
+  keys = {
+    {
+      "<F12>",
+      "<cmd>ZenMode<cr>",
+      desc = "toggle zen mode",
+    },
+  },
   opts = {
     window = {
       backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
@@ -41,16 +48,16 @@ return
     plugins = {
       options = {
         enabled = true,
-        ruler = false, -- disables the ruler text in the cmd line area
+        ruler = false,   -- disables the ruler text in the cmd line area
         showcmd = false, -- disables the command in the last line of the screen
         -- you may turn on/off statusline in zen mode by setting 'laststatus'
         -- statusline will be shown only if 'laststatus' == 3
-        laststatus = 0,             -- turn off the statusline in zen mode
+        laststatus = 0,               -- turn off the statusline in zen mode
       },
       twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
       gitsigns = { enabled = false }, -- disables git signs
-      tmux = { enabled = false },   -- disables the tmux statusline
-      todo = { enabled = false },   -- if set to "true", todo-comments.nvim highlights will be disabled
+      tmux = { enabled = false },     -- disables the tmux statusline
+      todo = { enabled = false },     -- if set to "true", todo-comments.nvim highlights will be disabled
       alacritty = {
         enabled = false,
         font = "4", -- font size
