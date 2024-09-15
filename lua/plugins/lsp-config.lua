@@ -14,7 +14,7 @@ return {
     priority = 99,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls","tsserver","html","gopls","intelephense","taplo","tailwindcss","emmet_language_server","cssls" }
+        ensure_installed = { "lua_ls","ts_ls","html","gopls","intelephense","taplo","tailwindcss","emmet_language_server","cssls" }
       })
     end,
   },
@@ -28,7 +28,7 @@ return {
 
       lspconfig.lua_ls.setup({capabilties = capabilities})
       lspconfig.intelephense.setup({capabilties = capabilities})
-      lspconfig.tsserver.setup({capabilties = capabilities})
+      lspconfig.ts_ls.setup({capabilties = capabilities})
       lspconfig.html.setup({capabilties = capabilities})
       lspconfig.gopls.setup({capabilties = capabilities})
       lspconfig.taplo.setup({capabilties = capabilities})
