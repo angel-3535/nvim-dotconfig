@@ -80,7 +80,7 @@ local onedarkpro = {
   config = function()
     require("onedarkpro").setup({
       options = {
-        transparency = true,           -- Use a transparent background?
+        transparency = true, -- Use a transparent background?
       }
     })
     vim.cmd("colorscheme onedark")
@@ -113,5 +113,14 @@ local vsCode = {
 }
 
 
-
-return onedarkpro
+---@diagnostic disable-next-line: unused-local
+local monochrome = {
+  'bettervim/yugen.nvim',
+  config = function()
+    require('yugen').setup({
+      transparent = true,
+    })
+    vim.cmd.colorscheme('yugen')
+  end,
+}
+return monochrome

@@ -8,13 +8,20 @@ return {
     end
 
   },
+
   {
     "williamboman/mason-lspconfig.nvim",
-    lazy = false,
+     lazy = false,
+    branch = "v1.x",
     priority = 99,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls","tsserver","html","gopls","intelephense","taplo","tailwindcss","emmet_language_server","cssls", "clangd"}
+        ensure_installed = {
+          "ts_ls",
+          "lua_ls",
+          "clangd",
+          "gopls",
+        }
       })
     end,
   },
@@ -26,16 +33,10 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
 
-      lspconfig.lua_ls.setup({capabilties = capabilities})
-      lspconfig.intelephense.setup({capabilties = capabilities})
-      lspconfig.ts_ls.setup({capabilties = capabilities})
-      lspconfig.html.setup({capabilties = capabilities})
-      lspconfig.gopls.setup({capabilties = capabilities})
-      lspconfig.taplo.setup({capabilties = capabilities})
-      lspconfig.tailwindcss.setup({capabilties = capabilities})
-      lspconfig.emmet_language_server.setup({capabilties = capabilities})
-      lspconfig.cssls.setup({capabilties = capabilities})
-      lspconfig.clangd.setup({capabilties = capabilities})
+      lspconfig.ts_ls.setup({ capabilties = capabilities })
+      lspconfig.gopls.setup({ capabilties = capabilities })
+      lspconfig.lua_ls.setup({ capabilties = capabilities })
+      lspconfig.clangd.setup({ capabilties = capabilities })
 
 
       vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')

@@ -4,7 +4,6 @@ vim.g.deprecation_warnings = false
 vim.opt.nu= true
 vim.opt.relativenumber= true
 
---set 4 space indent
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -28,6 +27,10 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.opt.termguicolors = true
+vim.cmd [[
+  hi Normal guibg=NONE ctermbg=NONE
+  hi NormalNC guibg=NONE ctermbg=NONE
+]]
 
 vim.opt.scrolloff = 12
 vim.opt.signcolumn = "yes"
@@ -38,16 +41,6 @@ vim.opt.colorcolumn = ""
 
 
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = ""
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 1
-vim.opt.foldnestmax = 4
-vim.opt.foldenable = false
-
---============================clipboard=============================
---vim.opt.clipboard = 'unnamedplus'
 
 --============================autocomands=============================
 vim.api.nvim_create_autocmd('TextYankPost', {
