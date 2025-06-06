@@ -10,6 +10,7 @@ local gruv = {
   end,
 }
 
+
 ---@diagnostic disable-next-line: unused-local
 local cap = {
   "catppuccin/nvim",

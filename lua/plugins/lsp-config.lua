@@ -8,7 +8,6 @@ return {
     end
 
   },
-
   {
     "williamboman/mason-lspconfig.nvim",
      lazy = false,
