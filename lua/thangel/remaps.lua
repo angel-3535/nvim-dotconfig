@@ -8,6 +8,8 @@ vim.keymap.set("n", "<C-b>", "<C-a>")
 vim.keymap.set("v", "<C-d>", "<C-d>zz")
 vim.keymap.set("v", "<C-u>", "<C-u>zz")
 
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 vim.keymap.set("v", "<leader>y", "\"* y")

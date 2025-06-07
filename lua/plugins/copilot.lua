@@ -1,4 +1,3 @@
-
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -28,7 +27,7 @@ return {
           debounce = 75,
           trigger_on_accept = true,
           keymap = {
-            accept = "<M-l>",
+            accept = "<TAB>",
             accept_word = false,
             accept_line = false,
             next = "<M-]>",
@@ -79,6 +78,7 @@ return {
         },
         server_opts_overrides = {},
       })
+
     end,
   }, {
   "zbirenbaum/copilot-cmp",
