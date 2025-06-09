@@ -22,7 +22,7 @@ local cap = {
     local macchiato = require("catppuccin.palettes").get_palette "macchiato"
     local mocha = require("catppuccin.palettes").get_palette "mocha"
     require("catppuccin").setup({
-      flavour = "auto", -- latte, frappe, macchiato, mocha
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = {    -- :h background
         light = "latte",
         dark = "mocha",
@@ -98,15 +98,6 @@ local vsCode = {
     local c = require('vscode.colors').get_colors()
     require('vscode').setup({
       transparent = true,
-      italic_comments = true,
-      underline_links = true,
-      disable_nvimtree_bg = true,
-      color_overrides = {
-        vscLineNumber = '#FFFFFF',
-      },
-      group_overrides = {
-        Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
-      }
     })
     -- require('vscode').load()
     vim.cmd.colorscheme "vscode"
@@ -115,13 +106,37 @@ local vsCode = {
 
 
 ---@diagnostic disable-next-line: unused-local
-local monochrome = {
+local yugen = {
   'bettervim/yugen.nvim',
   config = function()
     require('yugen').setup({
-      transparent = true,
+      transparent = false,
+      colors = {
+        bg = "#080808",
+      },
     })
     vim.cmd.colorscheme('yugen')
+    vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#282828"})
   end,
 }
-return monochrome
+
+
+---@diagnostic disable-next-line: unused-local
+local vague = {
+  "vague2k/vague.nvim",
+  config = function()
+    require("vague").setup({
+      transparent = false,
+      colors = {
+        bg = "#080808",
+
+      },
+    })
+    vim.cmd.colorscheme("vague")
+    vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#282828"})
+  end
+}
+
+
+
+return vague
