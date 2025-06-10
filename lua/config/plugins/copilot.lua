@@ -78,7 +78,6 @@ return {
         },
         server_opts_overrides = {},
       })
-
     end,
   }, {
   "zbirenbaum/copilot-cmp",

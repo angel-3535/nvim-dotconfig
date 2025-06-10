@@ -10,7 +10,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-     lazy = false,
+    lazy = false,
     branch = "v1.x",
     priority = 99,
     config = function()
@@ -26,8 +26,15 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
-    priority = 98,
+    dependencies = {
+      "folke/lazydev.nvim",
+      ft   = "lua",
+      opts = {
+        library = {
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
@@ -37,18 +44,22 @@ return {
       lspconfig.lua_ls.setup({ capabilties = capabilities })
       lspconfig.clangd.setup({ capabilties = capabilities })
 
-
-      vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-      vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-      vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-
       vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP actions',
-        callback = function(event)
-          local opts = { buffer = event.buf }
+        callback = function(args)
+          --if we dont have client return early
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if not client then return end
+
+          --set keymaps
+          local opts = { buffer = args.buf }
+          vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+          vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+          vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
           vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
           vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
           vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+          vim.keymap.set("n", "<leader>gf", function() vim.lsp.buf.format() end)
           --vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
           vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
           vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
@@ -56,9 +67,17 @@ return {
           vim.keymap.set({ 'n', 'x' }, '<leader>gF', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
           vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
           vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+
+          if client.supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = args.buf,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+              end,
+            })
+          end
         end
       })
     end,
-  },
-
+  }
 }

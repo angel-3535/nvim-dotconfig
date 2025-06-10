@@ -1,6 +1,3 @@
-
-require('thangel')
+require('angel')
 require('config.lazy')
-
-
 
