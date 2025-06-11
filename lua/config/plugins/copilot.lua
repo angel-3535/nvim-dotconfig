@@ -29,7 +29,7 @@ return {
           keymap = {
             accept = "<C-l>",
             accept_word = false,
-            accept_line = "<TAB>",
+            accept_line = "<S-TAB>",
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",
