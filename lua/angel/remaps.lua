@@ -19,8 +19,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("v", "<leader>y", "\"*y")
 vim.keymap.set("v", "<leader>y", "\"*y")
 
---Explore with space + p + v
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>", {})
 
 --Exit terminal mode with
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>")

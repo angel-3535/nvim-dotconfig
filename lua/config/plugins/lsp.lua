@@ -21,6 +21,7 @@ return {
           "clangd",
           "gopls",
           "html",
+          "phpactor",
         }
       })
     end,
@@ -86,6 +87,7 @@ return {
       lspconfig.lua_ls.setup({ capabilties = capabilities })
       lspconfig.clangd.setup({ capabilties = capabilities })
       lspconfig.html.setup({ capabilties = capabilities })
+      lspconfig.phpactor.setup({ capabilties = capabilities })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
