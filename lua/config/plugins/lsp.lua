@@ -82,12 +82,12 @@ return {
       local lspconfig = require('lspconfig')
 
 
-      lspconfig.ts_ls.setup({ capabilties = capabilities })
-      lspconfig.gopls.setup({ capabilties = capabilities })
-      lspconfig.lua_ls.setup({ capabilties = capabilities })
-      lspconfig.clangd.setup({ capabilties = capabilities })
-      lspconfig.html.setup({ capabilties = capabilities })
-      lspconfig.phpactor.setup({ capabilties = capabilities })
+      lspconfig.ts_ls.setup({ capabilities = capabilities })
+      lspconfig.gopls.setup({ capabilities = capabilities })
+      lspconfig.lua_ls.setup({ capabilities = capabilities })
+      lspconfig.clangd.setup({ capabilities = capabilities })
+      lspconfig.html.setup({ capabilities = capabilities })
+      lspconfig.phpactor.setup({ capabilities = capabilities })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)

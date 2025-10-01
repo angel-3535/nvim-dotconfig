@@ -8,6 +8,6 @@ return {
       },
     })
     vim.cmd.colorscheme("vague")
-    vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#282828" })
+    vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#333333" })
   end
 }
