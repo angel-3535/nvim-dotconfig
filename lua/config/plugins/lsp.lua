@@ -16,7 +16,6 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "ts_ls",
           "lua_ls",
           "clangd",
           "gopls",
@@ -67,6 +66,11 @@ return {
     end,
   },
   {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "folke/lazydev.nvim",
@@ -82,7 +86,6 @@ return {
       local lspconfig = require('lspconfig')
 
 
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
       lspconfig.gopls.setup({ capabilities = capabilities })
       lspconfig.lua_ls.setup({ capabilities = capabilities })
       lspconfig.clangd.setup({ capabilities = capabilities })
