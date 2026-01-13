@@ -25,5 +25,22 @@ return {
       transparent_mode = false,
     })
     vim.cmd("colorscheme gruvbox")
+
+    -- Theme toggle commands
+    vim.api.nvim_create_user_command("ThemeToggle", function()
+      if vim.o.background == "dark" then
+        vim.o.background = "light"
+      else
+        vim.o.background = "dark"
+      end
+    end, {})
+
+    vim.api.nvim_create_user_command("ThemeLight", function()
+      vim.o.background = "light"
+    end, {})
+
+    vim.api.nvim_create_user_command("ThemeDark", function()
+      vim.o.background = "dark"
+    end, {})
   end
 }
