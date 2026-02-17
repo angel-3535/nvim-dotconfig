@@ -16,12 +16,15 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
+          "astro",
           "lua_ls",
           "clangd",
           "gopls",
           "html",
+          "ols",
           "phpactor",
-          "ts_ls"
+          "ts_ls",
+          "zls"
         }
       })
     end,
@@ -82,12 +85,22 @@ return {
       local lspconfig = require('lspconfig')
 
 
+      lspconfig.astro.setup({
+        capabilities = capabilities,
+        init_options = {
+          typescript = {
+            tsdk = vim.fs.normalize('~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib')
+          },
+        },
+      })
       lspconfig.ts_ls.setup({ capabilities = capabilities })
       lspconfig.gopls.setup({ capabilities = capabilities })
       lspconfig.lua_ls.setup({ capabilities = capabilities })
       lspconfig.clangd.setup({ capabilities = capabilities })
       lspconfig.html.setup({ capabilities = capabilities })
+      lspconfig.ols.setup({ capabilities = capabilities })
       lspconfig.phpactor.setup({ capabilities = capabilities })
+      lspconfig.zls.setup({ capabilities = capabilities })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
