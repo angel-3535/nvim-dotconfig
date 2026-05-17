@@ -82,10 +82,12 @@ return {
     },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require('lspconfig')
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
 
-
-      lspconfig.astro.setup({
+      vim.lsp.config('astro', {
         capabilities = capabilities,
         init_options = {
           typescript = {
@@ -93,14 +95,26 @@ return {
           },
         },
       })
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
-      lspconfig.gopls.setup({ capabilities = capabilities })
-      lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.clangd.setup({ capabilities = capabilities })
-      lspconfig.html.setup({ capabilities = capabilities })
-      lspconfig.ols.setup({ capabilities = capabilities })
-      lspconfig.phpactor.setup({ capabilities = capabilities })
-      lspconfig.zls.setup({ capabilities = capabilities })
+
+      local servers = {
+        'astro',
+        'ts_ls',
+        'gopls',
+        'lua_ls',
+        'clangd',
+        'html',
+        'ols',
+        'phpactor',
+        'zls',
+      }
+
+      for _, server in ipairs(servers) do
+        if server ~= 'astro' then
+          vim.lsp.config(server, { capabilities = capabilities })
+        end
+      end
+
+      vim.lsp.enable(servers)
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
