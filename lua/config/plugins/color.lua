@@ -1,30 +1,31 @@
 return {
-  "ellisonleao/gruvbox.nvim",
+  "rebelot/kanagawa.nvim",
   config = function()
-    require("gruvbox").setup({
-      terminal_colors = true, -- add neovim terminal colors
+    require("kanagawa").setup({
+      compile = false,
       undercurl = true,
-      underline = true,
-      bold = true,
-      italic = {
-        strings = true,
-        emphasis = true,
-        comments = true,
-        operators = false,
-        folds = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,
+      dimInactive = false,
+      terminalColors = true,
+      colors = {
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
       },
-      strikethrough = true,
-      invert_selection = false,
-      invert_signs = false,
-      invert_tabline = false,
-      inverse = false,   -- invert background for search, diffs, statuslines and errors
-      contrast = "hard", -- can be "hard", "soft" or empty string
-      palette_overrides = {},
-      overrides = {},
-      dim_inactive = false,
-      transparent_mode = false,
+      overrides = function()
+        return {}
+      end,
+      theme = "wave",
+      background = {
+        dark = "wave",
+        light = "lotus",
+      },
     })
-    vim.cmd("colorscheme gruvbox")
+    vim.cmd("colorscheme kanagawa")
 
     -- Theme toggle commands
     vim.api.nvim_create_user_command("ThemeToggle", function()
