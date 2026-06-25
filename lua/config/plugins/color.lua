@@ -4,9 +4,9 @@ return {
     require("kanagawa").setup({
       compile = false,
       undercurl = true,
-      commentStyle = { italic = true },
+      commentStyle = {},
       functionStyle = {},
-      keywordStyle = { italic = true },
+      keywordStyle = { italic = false },
       statementStyle = { bold = true },
       typeStyle = {},
       transparent = false,
