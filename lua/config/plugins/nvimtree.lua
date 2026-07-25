@@ -6,7 +6,18 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {}
+    require("nvim-tree").setup {
+      renderer = {
+        icons = {
+          web_devicons = {
+            folder = {
+              enable = true,
+              color = true,
+            },
+          },
+        },
+      },
+    }
 
     --Explore with space + p + v
     vim.keymap.set("n", "<leader>pv", ":NvimTreeFocus<CR>", {})

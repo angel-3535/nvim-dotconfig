@@ -91,13 +91,25 @@ return {
         capabilities = capabilities,
         init_options = {
           typescript = {
-            tsdk = vim.fs.normalize('~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib')
+            tsdk = vim.fs.normalize(
+              '~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib')
           },
+        },
+      })
+
+      vim.lsp.config('dexter', {
+        capabilities = capabilities,
+        cmd = { 'dexter', 'lsp' },
+        root_markers = { '.dexter/dexter.db', '.dexter.db', '.git', 'mix.exs' },
+        filetypes = { 'elixir', 'eelixir', 'heex' },
+        init_options = {
+          followDelegates = true,
         },
       })
 
       local servers = {
         'astro',
+        'dexter',
         'ts_ls',
         'gopls',
         'lua_ls',
@@ -109,7 +121,7 @@ return {
       }
 
       for _, server in ipairs(servers) do
-        if server ~= 'astro' then
+        if server ~= 'astro' and server ~= 'dexter' then
           vim.lsp.config(server, { capabilities = capabilities })
         end
       end
@@ -130,6 +142,21 @@ return {
 
           vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
           vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+          vim.keymap.set('n', '<leader>od', function()
+            vim.lsp.buf.definition({
+              on_list = function(definitions)
+                local definition = definitions.items[1]
+                if not definition then return end
+
+                vim.cmd('vsplit')
+                vim.cmd('edit ' .. vim.fn.fnameescape(definition.filename))
+                vim.api.nvim_win_set_cursor(0, {
+                  definition.lnum,
+                  math.max(definition.col - 1, 0),
+                })
+              end,
+            })
+          end, { buffer = args.buf, desc = 'Open definition in vertical split' })
           vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
           vim.keymap.set("n", "<leader>gf", function() vim.lsp.buf.format() end)
           --vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
